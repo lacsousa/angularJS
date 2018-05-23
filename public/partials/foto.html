@@ -1,0 +1,54 @@
+<!-- public/partials/foto.html -->
+
+<div class="page-header text-center">
+    <h1>{{foto.titulo}}</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+<form novalidate name="formulario" class="row" ng-submit="submeter()">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Título</label>
+            <input name="titulo" class="form-control" ng-model="foto.titulo" ng-maxlength="20" required>
+            <span ng-show="formulario.$submitted && formulario.titulo.$error.required" class="form-control alert-danger">Título obrigatório</span>
+            <span ng-show="formulario.$submitted && formulario.titulo.$error.maxlength" class="form-control alert-danger">Título deve ter no máximo 20 caracteres</span>
+
+        </div>
+        <div class="form-group">
+            <label>URL</label>
+            <input name="url" class="form-control" ng-model="foto.url" required>
+
+            <span ng-show="formulario.$submitted && formulario.titulo.$error.required" class="form-control alert-danger">URL obrigatória</span>
+
+        </div>
+        <div class="form-group">
+            <label>Descrição</label>
+            <textarea name="descricao" class="form-control" ng-model="foto.descricao">
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Grupo</label>
+            <select name="grupo" class="form-control" 
+                    ng-model="foto.grupo"
+                    ng-controller="GruposController" 
+                    ng-options="grupo._id as (grupo.nome | uppercase) for grupo in grupos" 
+                    required>
+                <option value="">Escolha um grupo</option>
+            </select>
+            <span ng-show="formulario.$submitted && formulario.grupo.$error.required" 
+                class="form-control alert-danger">Grupo obrigatório</span>
+
+        </div> 
+
+        <button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
+            Salvar
+        </button>
+        <!-- com o watcher diretiva .....a href="/" class="btn btn-primary" meu-focus focado="focado">Voltar</a-->
+        <a href="/" class="btn btn-primary" meu-focus>Voltar</a>
+        <hr>
+    </div>
+    <div class="col-md-6">
+        <minha-foto url="{{foto.url}}" titulo="{{foto.titulo}}" ></minha-foto>
+    </div>
+</form>

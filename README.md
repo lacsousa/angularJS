@@ -1,2 +1,2 @@
 # angularJS
-Exemplos Curso Alura angularJS - Luciano Cordeiro
+Exemplos AngularJS - Luciano Cordeiro
